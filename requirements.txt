@@ -1,0 +1,15 @@
+# QualityVision - Dependencias
+
+# UI y visualización
+pillow>=10.0.0
+matplotlib>=3.7.0
+numpy>=1.24.0
+
+# OpenCV para Grad-CAM
+opencv-python>=4.8.0
+
+# TensorFlow/Keras (para modelo MobileNetV2)
+tensorflow>=2.15.0
+
+# Opcional: para aceleración GPU
+# tensorflow[and-cuda]>=2.15.0
