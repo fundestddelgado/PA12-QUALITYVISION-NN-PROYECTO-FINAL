@@ -48,7 +48,9 @@ class QualityVisionUI:
         
     def _configurar_ventana(self):
         """Configura la ventana principal"""
-        self.root.title("QualityVision - Sistema de Detección de Defectos Industriales")
+        self.root.iconbitmap("icono-ventana.ico") # Icono de la ventana
+
+        self.root.title("QualityVision AI – Visión Artificial para Reducir Errores y Desperdicios en la Producción ")
         self.root.geometry(f"{VENTANA['ancho_inicial']}x{VENTANA['alto_inicial']}")
         self.root.minsize(VENTANA['ancho_minimo'], VENTANA['alto_minimo'])
         self.root.configure(bg=COLORES['bg_principal'])
@@ -85,22 +87,22 @@ class QualityVisionUI:
             text="🔍",
             font=('Segoe UI', 24),
             bg=COLORES['bg_principal'],
-            fg=COLORES['acento_naranja']
+            fg=COLORES['acento_ia_turquesa']  # Turquesa tecnológico
         )
         icono_lbl.pack(side='left', padx=(0, 10))
         
         titulo_lbl = tk.Label(
             titulo_frame,
-            text="QualityVision",
+            text="QualityVision AI",
             font=FUENTES['titulo'],
             bg=COLORES['bg_principal'],
-            fg=COLORES['texto_principal']
+            fg=COLORES['acento_ia_turquesa']  # Turquesa tecnológico
         )
         titulo_lbl.pack(side='left')
         
         subtitulo_lbl = tk.Label(
             titulo_frame,
-            text="Sistema de Detección de Defectos Industriales",
+            text="Visión Artificial para Reducir Errores y Desperdicios en la Producción ",
             font=FUENTES['pequena'],
             bg=COLORES['bg_principal'],
             fg=COLORES['texto_secundario']
@@ -115,7 +117,7 @@ class QualityVisionUI:
             bg=COLORES['bg_secundario'],
             fg=COLORES['texto_principal'],
             activebackground=COLORES['bg_hover'],
-            activeforeground=COLORES['acento_naranja'],
+            activeforeground=COLORES['metal_medio'],
             relief='flat',
             bd=0,
             padx=15,
@@ -156,7 +158,7 @@ class QualityVisionUI:
             text="📷 Imagen de Análisis",
             font=FUENTES['subtitulo'],
             bg=COLORES['bg_secundario'],
-            fg=COLORES['acento_naranja']
+            fg=COLORES['acento_ia_azul']  # Azul eléctrico
         ).pack(side='left', anchor='w')
         
         # Canvas para imagen con área de drop
@@ -174,7 +176,7 @@ class QualityVisionUI:
         
         # Texto placeholder
         self.canvas_placeholder = self.canvas_imagen.create_text(
-            350, 250,
+            400, 250,
             text="📁 Arrastra una imagen aquí\no haz clic para seleccionar",
             font=FUENTES['subtitulo'],
             fill=COLORES['texto_secundario'],
@@ -259,7 +261,7 @@ class QualityVisionUI:
             text="📊 Resultados del Análisis",
             font=FUENTES['subtitulo'],
             bg=COLORES['bg_secundario'],
-            fg=COLORES['acento_naranja']
+            fg=COLORES['acento_ia_azul']  # Azul eléctrico
         ).pack(side='left', anchor='w')
         
         # Notebook para tabs
@@ -271,7 +273,7 @@ class QualityVisionUI:
                        padding=[15, 8])
         style.map('Industrial.TNotebook.Tab',
                  background=[('selected', COLORES['bg_secundario'])],
-                 foreground=[('selected', COLORES['acento_naranja'])])
+                 foreground=[('selected', COLORES['metal_medio'])])
         
         self.notebook = ttk.Notebook(panel, style='Industrial.TNotebook')
         self.notebook.pack(fill='both', expand=True, padx=15, pady=(10, 15))
@@ -287,8 +289,7 @@ class QualityVisionUI:
         
         # Placeholders
         self._crear_placeholder_resultados()
-    
-
+        
         return panel
         
     def _crear_placeholder_resultados(self):
@@ -307,7 +308,6 @@ class QualityVisionUI:
                 justify='center'
             )
             lbl.place(relx=0.5, rely=0.5, anchor='center')
-        
             
     def _crear_footer(self):
         """Crea el footer con información"""
@@ -320,7 +320,7 @@ class QualityVisionUI:
         
         tk.Label(
             footer,
-            text="🤖 Motor: Red Neuronal Convolucional (CNN) | Versión 4.0.0",
+            text="🤖 Motor: Red Neuronal Convolucional (CNN) | Versión 1.0.0",
             font=FUENTES['pequena'],
             bg=COLORES['bg_principal'],
             fg=COLORES['texto_secundario']
@@ -333,7 +333,6 @@ class QualityVisionUI:
             bg=COLORES['bg_principal'],
             fg=COLORES['texto_secundario']
         ).pack(side='right', padx=20)
-        
         
     # ============= FUNCIONALIDADES =============
     
@@ -363,15 +362,15 @@ class QualityVisionUI:
         # Actualizar estado
         self.lbl_estado.config(
             text=f"✅ Imagen cargada: {ruta.split('/')[-1]}",
-            fg=COLORES['acento_verde']
+            fg=COLORES['acento_verde_validacion']
         )
         self.btn_analizar.config(state='normal')
         
         # Animación de pulso en botón analizar
         self.animaciones.pulso(
             self.btn_analizar.winfo_children()[0] if self.btn_analizar.winfo_children() else self.btn_analizar,
-            COLORES['acento_naranja'],
-            COLORES['acento_naranja_hover']
+            COLORES['borde_activo'],
+            COLORES['borde_hover']
         )
         
     def _mostrar_imagen_en_canvas(self, img_pil):
@@ -398,10 +397,10 @@ class QualityVisionUI:
             anchor='center'
         )
         
-        # Marco decorativo
+        # Marco decorativo con azul eléctrico (tecnología)
         self.canvas_imagen.create_rectangle(
             10, 10, canvas_w - 10, canvas_h - 10,
-            outline=COLORES['acento_naranja'],
+            outline=COLORES['acento_ia_azul'],
             width=2
         )
         
@@ -426,7 +425,7 @@ class QualityVisionUI:
         
         self.lbl_estado.config(
             text="🔄 Analizando imagen...",
-            fg=COLORES['acento_naranja']
+            fg=COLORES['acento_ia_turquesa']  # Turquesa para proceso IA
         )
         self.progress.start(10)
         
@@ -452,7 +451,7 @@ class QualityVisionUI:
         if resultados is None:
             self.lbl_estado.config(
                 text="❌ Error en el análisis",
-                fg=COLORES['acento_rojo']
+                fg=COLORES['acento_rojo_defecto']
             )
             self.analisis_en_curso = False
             self._reactivar_botones()
@@ -461,7 +460,6 @@ class QualityVisionUI:
         # Mostrar resultados
         self._mostrar_resultados(resultados)
         
-
         # Actualizar estado según resultado
         pred = resultados['prediccion_label']
         conf = resultados['confianza']
@@ -469,21 +467,21 @@ class QualityVisionUI:
         if pred == "DEFECT":
             # DEFECTO detectado
             if conf >= 0.8:
-                color_estado = COLORES['acento_rojo']
+                color_estado = COLORES['acento_rojo_defecto']
                 icono = "⚠️"
                 mensaje = "DEFECTO DETECTADO"
             else:
-                color_estado = COLORES['acento_naranja']
+                color_estado = COLORES['acento_amarillo']
                 icono = "⚠️"
                 mensaje = "POSIBLE DEFECTO"
         else:
             # Pieza OK
             if conf >= 0.8:
-                color_estado = COLORES['acento_verde']
+                color_estado = COLORES['acento_verde_validacion']
                 icono = "✅"
                 mensaje = "PIEZA OK"
             else:
-                color_estado = COLORES['acento_naranja']
+                color_estado = COLORES['acento_amarillo']
                 icono = "⚠️"
                 mensaje = "VERIFICAR PIEZA"
             
@@ -497,7 +495,6 @@ class QualityVisionUI:
         
     def _mostrar_resultados(self, resultados):
         """Muestra los resultados en los tabs correspondientes"""
-        
         # Limpiar tabs
         for tab in [self.tab_probabilidades, self.tab_mapa_calor, self.tab_metricas]:
             for widget in tab.winfo_children():
@@ -524,7 +521,7 @@ class QualityVisionUI:
         canvas_heatmap.draw()
         canvas_heatmap.get_tk_widget().pack(fill='both', expand=True)
         
-        # Tab 3: Métricas con matriz de confusión
+        # Tab 3: Métricas 
         fig_metricas = self.generador_graficas.crear_metricas_panel(
             resultados['probabilidades'],
             resultados['prediccion_label'],
@@ -535,7 +532,6 @@ class QualityVisionUI:
         canvas_metricas.draw()
         canvas_metricas.get_tk_widget().pack(fill='both', expand=True, padx=20, pady=20)
         
-
     def _reactivar_botones(self):
         """Reactiva los botones después del análisis"""
         self.btn_cargar.config(state='normal')
@@ -552,7 +548,7 @@ class QualityVisionUI:
         # Limpiar canvas
         self.canvas_imagen.delete('all')
         self.canvas_placeholder = self.canvas_imagen.create_text(
-            350, 250,
+            400, 250,
             text="📁 Arrastra una imagen aquí\no haz clic para seleccionar",
             font=FUENTES['subtitulo'],
             fill=COLORES['texto_secundario'],
@@ -580,7 +576,7 @@ class QualityVisionUI:
         # Por ahora, solo configuramos el visual
         def on_enter(event):
             if not self.analisis_en_curso:
-                self.canvas_imagen.config(highlightbackground=COLORES['acento_naranja'])
+                self.canvas_imagen.config(highlightbackground=COLORES['acento_ia_turquesa'])
                 
         def on_leave(event):
             self.canvas_imagen.config(highlightbackground=COLORES['borde_normal'])
@@ -593,7 +589,7 @@ class QualityVisionUI:
         menu = tk.Menu(self.root, tearoff=0,
                       bg=COLORES['bg_panel'],
                       fg=COLORES['texto_principal'],
-                      activebackground=COLORES['acento_naranja'],
+                      activebackground=COLORES['metal_medio'],
                       activeforeground='white',
                       bd=0)
         
@@ -622,7 +618,7 @@ class QualityVisionUI:
             text="⚙️ Configuración",
             font=FUENTES['subtitulo'],
             bg=COLORES['bg_secundario'],
-            fg=COLORES['acento_naranja']
+            fg=COLORES['metal_medio']
         ).pack(pady=20)
         
         tk.Label(
@@ -678,7 +674,7 @@ Fecha: {self._obtener_fecha_hora()}
         """Muestra información de la aplicación"""
         messagebox.showinfo(
             "Acerca de QualityVision",
-            "QualityVision v1.0.0\n\n"
+            "QualityVision v1.3.3\n\n"
             "Sistema de Detección de Defectos Industriales\n"
             "Basado en Redes Neuronales Convolucionales\n\n"
             "© 2025 - Todos los derechos reservados"

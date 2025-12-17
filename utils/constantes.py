@@ -9,35 +9,48 @@ Configuraciones, constantes y clases de defectos
 # DEFECT = clase 0, OK = clase 1
 CLASES_DEFECTOS = ["DEFECT", "OK"]
 
-# Colores del tema 
+# Colores 
 COLORES = {
-    # Fondo y superficies
-    'bg_principal': '#1a1a1a',
-    'bg_secundario': '#2b2b2b',
-    'bg_panel': '#353535',
-    'bg_hover': '#404040',
+    # Fondo y superficies 
+    'bg_principal': '#1C1C1C',      # Negro carbón 
+    'bg_secundario': '#2b2b2b',     # Gris carbón medio
+    'bg_panel': '#353535',          # Gris industrial
+    'bg_hover': '#4A4A4A',          # Gris oscuro 
     
-    # Acentos industriales
-    'acento_naranja': '#ff6b35',
-    'acento_naranja_hover': '#ff8555',
-    'acento_azul': '#4a90e2',
-    'acento_verde': '#5cb85c',
-    'acento_rojo': '#d9534f',
+    # Acentos tecnológicos 
+    'acento_ia_azul': '#007BFF',         # Azul eléctrico 
+    'acento_ia_azul_hover': '#0056b3',   # Azul eléctrico hover
+    'acento_ia_turquesa': '#40E0D0',     # Turquesa 
+    'acento_verde_validacion': '#43A047', # Verde brillante validación (OK)
+    'acento_rojo_defecto': '#E53935',    # Rojo controlado (DEFECT)
     
-    # Metálicos
-    'metal_claro': '#8a8a8a',
-    'metal_medio': '#5a5a5a',
-    'metal_oscuro': '#3a3a3a',
+    # Verde original para compatibilidad
+    'acento_verde': '#00C853',           # Verde brillante 
+    'acento_azul': '#007BFF',            # Azul eléctrico
+    'acento_rojo': '#E53935',            # Rojo controlado
     
+    # Acentos de transición 
+    'acento_amarillo': '#FDD835',        # Amarillo suave 
+    'acento_blanco': '#FFFFFF',          # Blanco puro 
+    
+    # Metálicos 
+    'metal_claro': '#8a8a8a',       # Metal claro
+    'metal_medio': '#6B4F3A',       # Marrón industrial 
+    'metal_oscuro': '#4A4A4A',      # Gris oscuro metálico
+    
+   
     # Textos
-    'texto_principal': '#e0e0e0',
-    'texto_secundario': '#b0b0b0',
-    'texto_deshabilitado': '#666666',
+    'texto_principal': '#FFFFFF',        # Blanco puro 
+    'texto_secundario': '#b0b0b0',       # Gris claro
+    'texto_deshabilitado': '#666666',    # Gris apagado
+    'texto_tecnologia': '#40E0D0',       # Turquesa 
     
     # Bordes
-    'borde_normal': '#4a4a4a',
-    'borde_activo': '#ff6b35',
-    'borde_hover': '#6a6a6a',
+    'borde_normal': '#4A4A4A',           # Gris oscuro
+    'borde_activo': '#007BFF',           # Azul eléctrico 
+    'borde_hover': '#40E0D0',            # Turquesa 
+    'borde_validacion': '#43A047',       # Verde 
+    'borde_alerta': '#E53935',           # Rojo 
 }
 
 # Configuración de fuentes

@@ -44,7 +44,7 @@ def main():
     # Inicializar aplicación
     try:
         print("\n" + "="*70)
-        print(" "*20 + "🔍 QualityVision v4.0")
+        print(" "*20 + "🔍 QualityVision v1.3.3")
         print("="*70)
         
         app = QualityVisionUI(

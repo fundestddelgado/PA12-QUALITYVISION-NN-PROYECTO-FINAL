@@ -39,11 +39,11 @@ class GeneradorGraficas:
         for clase in clases_mostrar:
             if clase == pred_label:
                 if pred_label == "DEFECT":
-                    colores_barras.append(COLORES['acento_rojo'])
+                    colores_barras.append(COLORES['acento_rojo_defecto'])  # Rojo controlado
                 else:
-                    colores_barras.append(COLORES['acento_verde'])
+                    colores_barras.append(COLORES['acento_verde_validacion'])  # Verde validación
             else:
-                colores_barras.append(COLORES['metal_medio'])
+                colores_barras.append(COLORES['borde_activo'])
         
         # Crear barras
         barras = ax.bar(clases_mostrar, probs_mostrar, color=colores_barras, 
@@ -66,10 +66,10 @@ class GeneradorGraficas:
         # Título con resultado
         if pred_label == "DEFECT":
             titulo = '⚠️ DEFECTO DETECTADO'
-            color_titulo = COLORES['acento_rojo']
+            color_titulo = COLORES['acento_rojo_defecto']
         else:
             titulo = '✓ PIEZA OK'
-            color_titulo = COLORES['acento_verde']
+            color_titulo = COLORES['acento_verde_validacion']
             
         ax.set_title(titulo, fontsize=15, color=color_titulo,
                     fontweight='bold', pad=15)
@@ -88,10 +88,11 @@ class GeneradorGraficas:
             f"Tiempo: {tiempo_analisis:.3f}s"
         )
         
+        # Determinar color del cuadro según resultado
         if pred_label == "DEFECT":
-            color_info = COLORES['acento_rojo'] if confianza >= 0.8 else COLORES['acento_naranja']
+            color_info = COLORES['acento_rojo_defecto'] if confianza >= 0.8 else COLORES['acento_amarillo']
         else:
-            color_info = COLORES['acento_verde'] if confianza >= 0.8 else COLORES['acento_naranja']
+            color_info = COLORES['acento_verde_validacion'] if confianza >= 0.8 else COLORES['acento_amarillo']
         
         ax.text(0.98, 0.96, info_texto,
                transform=ax.transAxes, ha='right', va='top',
@@ -150,7 +151,7 @@ class GeneradorGraficas:
         cbar.ax.tick_params(colors=COLORES['texto_secundario'])
         
         ax.set_title('Mapa de Calor - Áreas de Atención del Modelo', 
-                    fontsize=13, color=COLORES['acento_naranja'],
+                    fontsize=13, color=COLORES['acento_ia_turquesa'],
                     fontweight='bold', pad=10)
         ax.axis('off')
         
@@ -173,7 +174,7 @@ class GeneradorGraficas:
     
     def crear_metricas_panel(self, probabilidades, pred_label, confianza, tiempo_analisis):
         """
-        Panel de métricas detalladas + MATRIZ DE CONFUSIÓN
+        Panel de métricas detalladas 
         """
         fig = Figure(figsize=(6, 5), dpi=100, facecolor=COLORES['bg_panel'])
         
@@ -214,7 +215,7 @@ class GeneradorGraficas:
                fontsize=10, fontweight='bold',
                color=COLORES['texto_secundario'],
                transform=ax1.transAxes)
-        color_d = COLORES['acento_rojo'] if prob_defect > 0.5 else COLORES['texto_principal']
+        color_d = COLORES['acento_rojo_defecto'] if prob_defect > 0.5 else COLORES['texto_principal']
         ax1.text(0.7, y_pos, f'{prob_defect:.3%}',
                fontsize=10, color=color_d, fontweight='bold',
                transform=ax1.transAxes)
@@ -224,7 +225,7 @@ class GeneradorGraficas:
                fontsize=10, fontweight='bold',
                color=COLORES['texto_secundario'],
                transform=ax1.transAxes)
-        color_o = COLORES['acento_verde'] if prob_ok > 0.5 else COLORES['texto_principal']
+        color_o = COLORES['acento_verde_validacion'] if prob_ok > 0.5 else COLORES['texto_principal']
         ax1.text(0.7, y_pos, f'{prob_ok:.3%}',
                fontsize=10, color=color_o, fontweight='bold',
                transform=ax1.transAxes)
@@ -239,11 +240,11 @@ class GeneradorGraficas:
         y_pos -= 0.10
         ax1.text(0.05, y_pos, '- Confianza:',
                fontsize=10, fontweight='bold',
-               color=COLORES['acento_naranja'],
+               color=COLORES['acento_ia_azul'],
                transform=ax1.transAxes)
-        conf_color = (COLORES['acento_verde'] if confianza >= 0.8 
-                     else COLORES['acento_naranja'] if confianza >= 0.5
-                     else COLORES['acento_rojo'])
+        conf_color = (COLORES['acento_verde_validacion'] if confianza >= 0.8 
+                     else COLORES['acento_amarillo'] if confianza >= 0.5
+                     else COLORES['acento_rojo_defecto'])
         ax1.text(0.7, y_pos, f'{confianza:.3%}',
                fontsize=10, color=conf_color, fontweight='bold',
                transform=ax1.transAxes)
@@ -252,7 +253,7 @@ class GeneradorGraficas:
         y_pos -= 0.10
         ax1.text(0.05, y_pos, '- Tiempo:',
                fontsize=10, fontweight='bold',
-               color=COLORES['acento_naranja'],
+               color=COLORES['acento_ia_azul'],
                transform=ax1.transAxes)
         ax1.text(0.7, y_pos, f'{tiempo_analisis:.3f}s',
                fontsize=10, color=COLORES['texto_principal'],
@@ -266,7 +267,6 @@ class GeneradorGraficas:
         ax1.text(0.7, y_pos, 'MobileNetV2',
                fontsize=9, color=COLORES['texto_secundario'],
                transform=ax1.transAxes)
-        
         
         fig.patch.set_facecolor(COLORES['bg_panel'])
         fig.tight_layout(pad=1.5)

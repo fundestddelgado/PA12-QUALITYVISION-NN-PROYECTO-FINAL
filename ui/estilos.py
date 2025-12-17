@@ -14,17 +14,17 @@ def aplicar_estilos_tema_industrial():
     Aplica el tema industrial completo a los widgets ttk
     """
     style = ttk.Style()
-    
+
     # Configurar tema base
     style.theme_use('clam')
-    
+
     # ==================== BOTONES ====================
     style.configure(
         'Industrial.TButton',
-        background=COLORES['metal_medio'],
+        background=COLORES['borde_activo'],
         foreground=COLORES['texto_principal'],
         bordercolor=COLORES['borde_normal'],
-        focuscolor=COLORES['acento_naranja'],
+        focuscolor=COLORES['acento_ia_azul'],
         darkcolor=COLORES['metal_oscuro'],
         lightcolor=COLORES['metal_claro'],
         relief='flat',
@@ -32,7 +32,7 @@ def aplicar_estilos_tema_industrial():
         font=FUENTES['boton'],
         padding=(12, 8),
     )
-    
+
     style.map(
         'Industrial.TButton',
         background=[
@@ -45,45 +45,45 @@ def aplicar_estilos_tema_industrial():
         ],
         bordercolor=[
             ('active', COLORES['borde_hover']),
-            ('focus', COLORES['acento_naranja'])
+            ('focus', COLORES['acento_ia_azul'])
         ]
     )
-    
-    # Botón primario (naranja)
+
+    # Botón primario (IA Azul)
     style.configure(
         'Primary.TButton',
-        background=COLORES['acento_naranja'],
-        foreground='white',
-        bordercolor=COLORES['acento_naranja'],
+        background=COLORES['acento_ia_azul'],
+        foreground=COLORES['acento_blanco'],
+        bordercolor=COLORES['acento_ia_azul'],
         font=FUENTES['boton'],
         padding=(14, 10),
     )
-    
+
     style.map(
         'Primary.TButton',
         background=[
-            ('active', COLORES['acento_naranja_hover']),
-            ('pressed', '#e55525'),
+            ('active', COLORES['acento_ia_azul_hover']),
+            ('pressed', COLORES['acento_ia_azul_hover']),
             ('disabled', COLORES['metal_oscuro'])
         ],
         foreground=[
             ('disabled', COLORES['texto_deshabilitado'])
         ]
     )
-    
+
     # ==================== FRAMES ====================
     style.configure(
         'Industrial.TFrame',
         background=COLORES['bg_secundario'],
         relief='flat'
     )
-    
+
     style.configure(
         'Panel.TFrame',
         background=COLORES['bg_panel'],
         relief='flat'
     )
-    
+
     # ==================== LABELFRAMES ====================
     style.configure(
         'Industrial.TLabelframe',
@@ -94,26 +94,26 @@ def aplicar_estilos_tema_industrial():
         borderwidth=1,
         padding=10
     )
-    
+
     style.configure(
         'Industrial.TLabelframe.Label',
         background=COLORES['bg_secundario'],
-        foreground=COLORES['acento_naranja'],
+        foreground=COLORES['acento_ia_azul'],
         font=FUENTES['subtitulo']
     )
-    
+
     # ==================== PROGRESSBAR ====================
     style.configure(
         'Industrial.Horizontal.TProgressbar',
-        background=COLORES['acento_naranja'],
+        background=COLORES['acento_ia_azul'],
         troughcolor=COLORES['metal_oscuro'],
         bordercolor=COLORES['borde_normal'],
-        lightcolor=COLORES['acento_naranja'],
-        darkcolor=COLORES['acento_naranja'],
+        lightcolor=COLORES['acento_ia_azul'],
+        darkcolor=COLORES['acento_ia_azul'],
         borderwidth=1,
         thickness=8
     )
-    
+
     # ==================== LABELS ====================
     style.configure(
         'Industrial.TLabel',
@@ -121,21 +121,21 @@ def aplicar_estilos_tema_industrial():
         foreground=COLORES['texto_principal'],
         font=FUENTES['normal']
     )
-    
+
     style.configure(
         'Title.TLabel',
         background=COLORES['bg_principal'],
         foreground=COLORES['texto_principal'],
         font=FUENTES['titulo']
     )
-    
+
     style.configure(
         'Subtitle.TLabel',
         background=COLORES['bg_secundario'],
-        foreground=COLORES['acento_naranja'],
+        foreground=COLORES['acento_ia_azul'],
         font=FUENTES['subtitulo']
     )
-    
+
     style.configure(
         'Status.TLabel',
         background=COLORES['bg_panel'],
@@ -153,7 +153,7 @@ def crear_boton_con_icono(parent, texto, comando, estilo='Industrial.TButton', i
         texto_completo = f"{icono}  {texto}"
     else:
         texto_completo = texto
-    
+
     btn = ttk.Button(parent, text=texto_completo, command=comando, style=estilo)
     return btn
 
